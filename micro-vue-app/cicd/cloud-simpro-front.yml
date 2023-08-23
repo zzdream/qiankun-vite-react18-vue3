@@ -1,0 +1,65 @@
+---
+######## 新版云仿真平台前端
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloud-simpro-front
+  namespace: cloud-simpro
+spec:
+  selector:
+    app: cloud-simpro-front
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cloud-simpro-front
+  namespace: cloud-simpro
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: cloud-simpro-front
+            port:
+              number: 80
+        path: /simpro_front
+        pathType: Prefix
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-simpro-front
+  namespace: cloud-simpro
+  labels:
+    app: cloud-simpro-front
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloud-simpro-front
+  template:
+    metadata:
+      namespace: cloud-simpro
+      labels:
+        app: cloud-simpro-front
+    spec:
+      imagePullSecrets:
+        - name: myregistrykey
+      containers:
+        - name: cloud-simpro-front
+          imagePullPolicy: Always
+          image: ${OCI_URI}/cloud_simpro_front:${VERSION}
+          resources:
+            limits:
+              cpu: "1"
+              memory: 2Gi

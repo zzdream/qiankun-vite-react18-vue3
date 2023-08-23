@@ -1,0 +1,8 @@
+*.md
+.vscode
+.idea
+dist
+public
+node_modules
+src/assets/iconfont/*
+src/router/SubRoute

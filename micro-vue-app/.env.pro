@@ -1,0 +1,5 @@
+
+VITE_TITLE='micro-vue-app'
+VITE_BASE_API='/'
+VITE_BASE_STATIC_URL='/'
+VITE_GATEWAY='/'

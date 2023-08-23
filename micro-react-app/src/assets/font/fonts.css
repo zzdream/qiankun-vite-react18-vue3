@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'YouSheBiaoTiHei-2';
+  src: url('YouSheBiaoTiHei-2.ttf?t=1683465293773') format('truetype');
+  /* 更多字体格式和路径可以根据需要添加 */
+}
+.fontFamily {
+  font-weight: 500 !important;
+  font-size: 0.18rem;
+  font-family: 'YouSheBiaoTiHei-2' !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
